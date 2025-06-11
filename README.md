@@ -15,7 +15,7 @@ To get a local copy up and running, follow these simple steps.
 
 ### Set up the Backend:
 
-1. Navigate into the backend directory:
+1. Navigate into the cloned-repo directory:
 
     ```bash
     cd cloned-repo-name
@@ -45,7 +45,7 @@ You need to have two terminals open: one for the backend server and one for serv
 
 ### Start the Backend Server:
 
-1. In your terminal, from the `backend-node` directory, run:
+1. In your terminal, from the `cloned-repo-name` directory, run:
 
     ```bash
     node server.js
