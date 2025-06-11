@@ -1,0 +1,336 @@
+/* =================================================================== */
+/* --- 1. GLOBAL STYLES & DARK MODE THEME --- */
+/* =================================================================== */
+:root {
+  --bg-color: #121212;
+  --surface-color: #1e1e1e;
+  --primary-color: #0d6efd;
+  --primary-hover: #3d8bfd;
+  --secondary-color: #495057;
+  --secondary-hover: #6c757d;
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --border-color: #343a40;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --success-color: #198754;
+  --error-color: #dc3545;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  --border-radius: 8px;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* =================================================================== */
+/* --- 2. LAYOUT & APP CONTAINER --- */
+/* =================================================================== */
+#app-container {
+  width: 100%;
+  max-width: 750px;
+  background: var(--surface-color);
+  padding: 2rem 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+.app-header .subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* =================================================================== */
+/* --- 3. SCREEN MANAGEMENT & ANIMATIONS --- */
+/* =================================================================== */
+.screen {
+  display: none;
+  text-align: center;
+}
+.screen.active {
+  display: block;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+.screen.exiting {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* =================================================================== */
+/* --- 4. FORMS, BUTTONS & ACCESSIBILITY --- */
+/* =================================================================== */
+.form-group {
+  margin: 1.5rem 0;
+}
+.form-actions {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  padding: 14px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+button:focus-visible,
+input:focus,
+textarea:focus,
+#feedback-container:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.btn-primary,
+.btn-secondary {
+  border: none;
+  padding: 14px 32px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 110, 253, 0.4);
+}
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+button:disabled {
+  background-color: #a0cffa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =================================================================== */
+/* --- 5. INDIVIDUAL SCREEN STYLES --- */
+/* =================================================================== */
+.interview-header {
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+#question-area {
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background: linear-gradient(145deg, #232323, #1c1c1c);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#question-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: left;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto 1rem;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#feedback-container {
+  max-height: 45vh;
+  overflow-y: auto;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1rem 1.5rem;
+  margin-top: 2rem;
+  background-color: var(--bg-color);
+}
+.error {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+/* =================================================================== */
+/* --- 6. FEEDBACK ACCORDION STYLES --- */
+/* =================================================================== */
+.overall-summary {
+  padding: 1.5rem;
+  background: rgba(13, 110, 253, 0.1);
+  border-left: 5px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+}
+.accordion-item {
+  border-bottom: 1px solid var(--border-color);
+}
+.accordion-item:last-of-type {
+  border-bottom: none;
+}
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.25rem 0.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.accordion-header:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.accordion-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: transform 0.3s ease-in-out;
+}
+.accordion-header.active .accordion-icon {
+  transform: rotate(45deg);
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+  padding: 0 1rem;
+}
+.accordion-content h4 {
+  color: var(--primary-hover);
+}
+.accordion-content p.user-answer {
+  font-style: italic;
+  color: var(--text-secondary);
+  border-left: 4px solid var(--secondary-color);
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+.accordion-content .feedback {
+  background: var(--bg-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+.accordion-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+.accordion-content li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 0.5rem;
+}
+.accordion-content li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+#feedback-container::-webkit-scrollbar {
+  width: 10px;
+}
+#feedback-container::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+#feedback-container::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+}
+#feedback-container::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-hover);
+}

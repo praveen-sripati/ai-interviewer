@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Mock Interview</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main id="app-container">
+    <header class="app-header">
+      <h1>AI Interviewer</h1>
+      <p class="subtitle">Hone your skills with AI-powered mock interviews</p>
+    </header>
+
+    <section id="setup-screen" class="screen">
+      <div class="screen-content">
+        <h2>Choose Your Topic</h2>
+        <p>Enter a subject you'd like to be interviewed on.</p>
+        <div class="form-group">
+          <label for="topic-input" class="sr-only">Interview Topic</label>
+          <input type="text" id="topic-input" placeholder="e.g., JavaScript, Data Structures, UX Design">
+        </div>
+        <button id="start-btn" class="btn-primary">Start Interview</button>
+      </div>
+    </section>
+
+    <section id="interview-screen" class="screen">
+      <header class="interview-header">
+        <h3>Question <span id="current-question-num"></span> of <span id="total-questions"></span></h3>
+      </header>
+      <div class="screen-content">
+        <div id="question-area" aria-live="polite">
+          <p id="question-text"></p>
+        </div>
+        <div class="form-group">
+          <label for="answer-input" class="sr-only">Your Answer</label>
+          <textarea id="answer-input" placeholder="Type your answer here..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button id="next-btn" class="btn-primary">Next Question</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="loading-screen" class="screen">
+      <div class="screen-content" role="status" aria-live="assertive">
+        <div class="spinner"></div>
+        <p id="loading-text">Generating questions...</p>
+      </div>
+    </section>
+
+    <section id="completion-screen" class="screen">
+      <div class="screen-content">
+        <h2>Interview Complete!</h2>
+        <p>Here is your performance analysis.</p>
+        <div id="feedback-container" tabindex="0">
+          <div id="feedback-content">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button id="restart-btn" class="btn-secondary">Practice Another Topic</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script defer src="script.js"></script>
+</body>
+
+</html>
